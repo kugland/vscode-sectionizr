@@ -1,0 +1,94 @@
+{
+  "name": "sectionizr",
+  "displayName": "Sectionizr",
+  "description": "Creates comment section banners in multiple languages.",
+  "version": "0.1.0",
+  "publisher": "kugland",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/kugland/vscode-sectionizr.git" },
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sectionizr.createSection0",
+        "title": "Sectionizr: Create Section (Level 0)",
+        "enablement": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "command": "sectionizr.createSection1",
+        "title": "Sectionizr: Create Section (Level 1)",
+        "enablement": "editorTextFocus && !editorReadonly"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sectionizr.createSection0",
+        "key": "ctrl+k 0",
+        "mac": "cmd+k 0",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "command": "sectionizr.createSection1",
+        "key": "ctrl+k 1",
+        "mac": "cmd+k 1",
+        "when": "editorTextFocus && !editorReadonly"
+      }
+    ],
+    "configuration": {
+      "title": "Sectionizr",
+      "properties": {
+        "sectionizr.formats": {
+          "type": "object",
+          "default": {},
+          "scope": "language-overridable",
+          "markdownDescription": "Comment tokens per language id, merged over the built-in table. `fill` must be exactly one character.",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["prefix", "fill", "suffix"],
+            "properties": {
+              "prefix": { "type": "string", "description": "Opening comment token." },
+              "fill": { "type": "string", "minLength": 1, "maxLength": 1, "description": "Single character used to pad the banner." },
+              "suffix": { "type": "string", "description": "Closing comment token." }
+            }
+          }
+        },
+        "sectionizr.uppercaseLevel0": {
+          "type": "boolean",
+          "default": true,
+          "scope": "language-overridable",
+          "description": "Uppercase the title in level 0 banners."
+        },
+        "sectionizr.blankLines": {
+          "type": "boolean",
+          "default": true,
+          "scope": "language-overridable",
+          "description": "Surround the inserted banner with blank lines."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile -- --production",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "compile-tests": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "npm run compile && npm run compile-tests && vscode-test",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.24.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
