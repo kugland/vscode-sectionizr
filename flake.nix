@@ -12,6 +12,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devshell.flakeModule
+        inputs.flake-parts.flakeModules.easyOverlay
         ./nix/develop.nix
         ./nix/packages.nix
       ];

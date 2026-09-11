@@ -69,6 +69,11 @@ in {
       '';
     };
   in {
+    # Derives `overlays.default` from these attrs (flake-parts easyOverlay).
+    overlayAttrs = {
+      vscode-sectionizr = config.packages.sectionizr;
+    };
+
     packages = {
       # Unpacked into the layout home-manager's `programs.vscode.extensions`
       # (and `vscode-with-extensions`) expects.
