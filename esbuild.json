@@ -1,0 +1,20 @@
+{
+  "base": {
+    "entryPoints": ["src/extension.ts"],
+    "outfile": "dist/extension.js",
+    "bundle": true,
+    "format": "cjs",
+    "platform": "node",
+    "external": ["vscode"],
+    "sourcesContent": false,
+    "logLevel": "info"
+  },
+  "production": {
+    "minify": true,
+    "sourcemap": false
+  },
+  "development": {
+    "minify": false,
+    "sourcemap": true
+  }
+}
