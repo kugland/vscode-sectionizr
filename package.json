@@ -86,7 +86,7 @@
     "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
-    "@vscode/vsce": "^2.24.0",
+    "@vscode/vsce": "^3.9.2",
     "esbuild": "^0.20.0",
     "typescript": "^5.4.0",
     "vitest": "^1.6.0"
